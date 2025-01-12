@@ -1,33 +1,53 @@
-import { Perception } from "../../types";
+import { Rememberable } from "../../types/interfaces/Rememberable";
 
-export class Memory {
-    #subject_id: string;
-    #associations: { [key: string]: number };
-    #perception: Perception;
+import { PerceptionModifiers, WriteableMemory } from "../../types/objects";
 
-    constructor(subject: string, associations: { [key: string]: number }, perception: Perception) {
-        this.#subject_id = subject;
+export class Memory implements Rememberable {
+    #subjectID: string;
+    #subjectPerceptionModifiers: PerceptionModifiers;
+    #associations: string[];
+
+    constructor(subjectID: string, subjectPerceptionModifiers: PerceptionModifiers, associations: string[]) {
+        this.#subjectID = subjectID;
+        this.#subjectPerceptionModifiers = subjectPerceptionModifiers;
         this.#associations = associations;
-        this.#perception = perception;
     }
 
-    get subject_id(): string {
-        return this.#subject_id;
+    // getters
+
+    getSubjectID(): string {
+        return this.#subjectID;
     }
-    get associations(): { [key: string]: number } {
+
+    getSubjectPerceptionModifiers(): PerceptionModifiers {
+        return this.#subjectPerceptionModifiers;
+    }
+
+    getAssociations(): string[] {
         return this.#associations;
     }
-    get perception(): Perception {
-        return this.#perception;
+
+    // setters
+
+    setSubjectID(subjectID: string): void {
+        this.#subjectID = subjectID;
     }
 
-    set subject_id(new_subject_id: string) {
-        this.#subject_id = new_subject_id;
+    setSubjectPerceptionModifiers(subjectPerceptionModifiers: PerceptionModifiers): void {
+        this.#subjectPerceptionModifiers = subjectPerceptionModifiers;
     }
-    set associations(new_associations: { [key: string]: number }) {
-        this.#associations = new_associations;
+
+    setAssociations(associations: string[]): void {
+        this.#associations = associations;
     }
-    set perception(new_perception: Perception) {
-        this.#perception = new_perception;
+
+    // transformations
+
+    jsonify(): WriteableMemory {
+        return {
+            subjectID: this.getSubjectID(),
+            subjectPerceptionModifiers: this.getSubjectPerceptionModifiers(),
+            associations: this.getAssociations(),
+        };
     }
 }

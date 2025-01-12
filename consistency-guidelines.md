@@ -8,13 +8,14 @@ This document outlines the standard formats for the project.
 
 1. **Import Order**:
    - **Modules**: Import entire modules first using the `import * as` syntax.
+   - **Interfaces** Import specific interfaces after classes.
    - **Classes**: Import specific classes after the modules.
    - **Functions**: Import specific functions using destructuring.
    - **Types**: Import specific types after functions.
    - **Data**: Import data last.
 
 1. **Separation**:
-   - Use a single empty line to separate each group of imports (Modules, Classes, Functions, Types, Data).
+   - Use a single empty line to separate each group of imports (Modules, Interfaces, Classes, Functions, Types, Data).
 
 1. **Syntax**:
    - Modules:
@@ -34,6 +35,9 @@ Below is an example demonstrating the proper order and formatting of imports:
 // Import modules
 import * as fs from "fs";
 import * as path from "path";
+
+// Import interfaces
+import { ILocation } from "./interfaces";
 
 // Import classes
 import { Person, Building, Event } from "./classes";

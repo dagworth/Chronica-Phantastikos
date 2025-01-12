@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 import { PersonStatistics, Statistic } from "../types/types";
-import { SimulationState } from "../types/state";
+import { SimulationState } from "../types/sim_mgmt";
 
 function matchingStats(currentStats: PersonStatistics, newStats: PersonStatistics): boolean {
     const stats: Statistic[] = Object.keys(currentStats) as Statistic[];

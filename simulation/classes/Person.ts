@@ -1,122 +1,161 @@
-import { Memory } from ".";
+import { Memory } from "./Memory";
 
-import { Gender, PersonStatistics, PersonData, Race, Coordinates } from "../../types";
+import { Rememberable } from "../../types/interfaces/Rememberable";
+import { Modifier } from "../../types/interfaces/Modifier";
 
-export class Person {
+import { IndividualStatistics, PersonData, WriteableMemory } from "../../types/objects";
+import { Coordinate, Gender, Race, Statistic } from "../../types/primitives";
+
+export class Person implements Rememberable {
     #id: string;
     #name: string;
     #race: Race;
     #gender: Gender;
     #age: number;
-    #location: Coordinates;
+    #location: Coordinate;
 
-    #statistics: PersonStatistics;
-    #memories: { [key: string]: Memory };
-    #modifiers: string[];
+    #statistics: IndividualStatistics;
+    #memories: { [memoryID: string]: Memory };
+    #modifiers: Modifier[];
 
-    #logs: string;
+    #logs: string[] = [];
 
     constructor(
         id: string,
         name: string,
         race: Race,
         gender: Gender,
-        statistics: PersonStatistics,
         age: number = 0,
-        location: Coordinates,
-        memories: { [key: string]: Memory } = {},
-        modifiers: string[] = [],
+
+        location: Coordinate,
+        statistics: IndividualStatistics,
+        memories: { [memoryID: string]: Memory } = {},
+        modifiers: Modifier[] = [],
     ) {
         this.#id = id;
         this.#name = name;
         this.#race = race;
         this.#gender = gender;
-        this.#statistics = statistics;
         this.#age = age;
+
         this.#location = location;
+        this.#statistics = statistics;
         this.#memories = memories;
         this.#modifiers = modifiers;
-        this.#logs = "";
+        this.#location = location;
     }
 
-    get name(): string {
-        return this.#name;
+    // setters
+
+    setID(id: string) {
+        this.#id = id;
     }
-    get race(): Race {
-        return this.#race;
+
+    setName(name: string) {
+        this.#name = name;
     }
-    get statistics(): PersonStatistics {
-        return this.#statistics;
+
+    setRace(race: Race) {
+        this.#race = race;
     }
-    get age(): number {
-        return this.#age;
+
+    setGender(gender: Gender) {
+        this.#gender = gender;
     }
-    get gender(): Gender {
-        return this.#gender;
+
+    setAge(age: number) {
+        this.#age = age;
     }
-    get id(): string {
+
+    setLocation(coords: Coordinate) {
+        this.#location = [...coords];
+    }
+
+    setStatistics(Statistics: IndividualStatistics) {
+        this.#statistics = { ...Statistics };
+    }
+
+    setMemories(memories: { [memoryID: string]: Memory }) {
+        this.#memories = { ...memories };
+    }
+
+    setModifiers(modifiers: Modifier[]) {
+        this.#modifiers = [...modifiers];
+    }
+
+    setLogs(logs: string[]) {
+        this.#logs = [...logs];
+    }
+
+    // getters
+
+    getID(): string {
         return this.#id;
     }
-    get location(): Coordinates {
-        return this.#location;
-    }
-    get memories(): { [key: string]: Memory } {
-        return this.#memories;
-    }
-    get modifiers(): string[] {
-        return this.#modifiers;
-    }
-    get logs(): string {
-        return this.#logs;
+
+    getName(): string {
+        return this.#name;
     }
 
-    set name(new_name: string) {
-        this.#name = new_name;
-    }
-    set race(new_race: Race) {
-        this.#race = new_race;
-    }
-    set statistics(new_statistics: PersonStatistics) {
-        this.#statistics = new_statistics;
-    }
-    set age(new_age: number) {
-        this.#age = new_age;
-    }
-    set gender(new_gender: Gender) {
-        this.#gender = new_gender;
-    }
-    set location(new_location: Coordinates) {
-        this.#location = new_location;
-    }
-    set memories(new_memories: { [key: string]: Memory }) {
-        this.#memories = new_memories;
-    }
-    set modifiers(new_modifiers: string[]) {
-        this.#modifiers = new_modifiers;
-    }
-    set logs(new_logs) {
-        this.#logs = new_logs;
+    getRace(): Race {
+        return this.#race;
     }
 
-    changeStat(stat: keyof PersonStatistics, newValue: PersonStatistics[typeof stat]) {
+    getGender(): Gender {
+        return this.#gender;
+    }
+
+    getAge(): number {
+        return this.#age;
+    }
+
+    getLocation(): Coordinate {
+        return [...this.#location];
+    }
+
+    getStatistics(): IndividualStatistics {
+        return { ...this.#statistics };
+    }
+
+    getMemories(): { [memoryID: string]: Memory } {
+        return { ...this.#memories };
+    }
+
+    getModifiers(): Modifier[] {
+        return [...this.#modifiers];
+    }
+
+    getLogs(): string[] {
+        return [...this.#logs];
+    }
+
+    // updaters
+
+    changeStat(stat: Statistic, newValue: number) {
         this.#statistics[stat] = newValue;
     }
 
     ageUp(): void {
-        this.age += 1;
+        this.#age++;
     }
 
     jsonify(): PersonData {
         return {
-            id: this.id,
-            name: this.name,
-            race: this.race,
-            gender: this.gender,
-            statistics: this.statistics,
-            age: this.age,
-            memories: this.memories,
-            modifiers: this.modifiers,
-            location: this.location,
+            id: this.#id,
+            name: this.#name,
+            race: this.#race,
+            gender: this.#gender,
+            age: this.#age,
+
+            location: [...this.#location],
+            stats: { ...this.#statistics },
+            memories: Object.fromEntries(
+                Object.entries(this.#memories).map((el: [string, Memory]): [string, WriteableMemory] => [
+                    el[0],
+                    el[1].jsonify(),
+                ]),
+            ),
+            modifiers: [...this.#modifiers],
         };
     }
 }

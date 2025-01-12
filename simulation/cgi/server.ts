@@ -2,7 +2,7 @@ import * as express from "express";
 import * as fs from "fs";
 import * as path from "path";
 
-import { SimulationState } from "../../types/state";
+import { SimulationState } from "../../types/sim_mgmt";
 
 const app: express.Application = express();
 

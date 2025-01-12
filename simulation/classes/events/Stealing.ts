@@ -1,3 +1,4 @@
+/*
 import { Person, IEvent } from "../";
 
 import { PersonStatistics } from "../../../types";
@@ -33,3 +34,4 @@ export class Stealing implements IEvent {
 
     finished(): void {}
 }
+*/

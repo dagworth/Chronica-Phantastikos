@@ -1,12 +1,13 @@
-import { Coordinates } from "../../../types";
-import { ILocation } from "./ILocation";
+import { ILocation } from "../../../types/interfaces/ILocation";
+
+import { Coordinate } from "../../../types/primitives";
 
 export class Block {
-    #coords: Coordinates; // The Coordinates represented by the block
+    #coords: Coordinate; // The Coordinates represented by the block
     #locationID: string; // The location that the Block is apart of
     #location: ILocation | null;
 
-    constructor(coords: Coordinates, locationID: string, location: ILocation | null) {
+    constructor(coords: Coordinate, locationID: string, location: ILocation | null) {
         this.#coords = [coords[0], coords[1]];
         this.#locationID = locationID;
         this.#location = location;
@@ -14,21 +15,21 @@ export class Block {
 
     // Getters
 
-    get coords(): Coordinates {
+    getCoords(): Coordinate {
         return [...this.#coords];
     }
 
-    get locationID(): string {
+    getLocationID(): string {
         return this.#locationID;
     }
 
-    get location(): ILocation | null {
+    getLocation(): ILocation | null {
         return this.#location;
     }
 
     // Setters
 
-    set coords(coords: Coordinates) {
+    set coords(coords: Coordinate) {
         this.#coords = [coords[0], coords[1]];
     }
 
