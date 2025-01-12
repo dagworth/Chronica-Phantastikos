@@ -1,9 +1,9 @@
-import { Person } from "../../../Person";
+import { Person } from "../../Person";
 
-import { ILocation } from "../../../../../types/interfaces/ILocation";
+import { ILocation } from "../../../interfaces/ILocation";
 
-import { LocationData } from "../../../../../types/objects";
-import { Coordinate, LocationType } from "../../../../../types/primitives";
+import { LocationData } from "../../../types/objects";
+import { Coordinate, LocationType } from "../../../types/primitives";
 
 export class Location implements ILocation {
     protected id: string;

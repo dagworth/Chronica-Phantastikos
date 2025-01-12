@@ -1,4 +1,4 @@
-import { Block } from "../classes/locations/Block";
+import { Block } from "../classes/locations/special/Block";
 
 import { getLocations } from "./getLocations";
 

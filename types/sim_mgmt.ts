@@ -1,8 +1,7 @@
-import { Person } from "../simulation/classes";
+import { Person } from "../simulation/classes/Person";
+import { ILocation } from "../simulation/interfaces/ILocation";
 
-import { ILocation } from "./interfaces/ILocation";
-
-import { LocationData, PersonData } from "./objects";
+import { LocationData, PersonData } from "../simulation/types/objects";
 
 export type SimulationState = {
     persons: { [id: string]: PersonData };

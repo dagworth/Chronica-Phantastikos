@@ -1,6 +1,6 @@
-import { Rememberable } from "../../types/interfaces/Rememberable";
+import { Rememberable } from "../interfaces/Rememberable";
 
-import { PerceptionModifiers, WriteableMemory } from "../../types/objects";
+import { PerceptionModifiers, WriteableMemory } from "../types/objects";
 
 export class Memory implements Rememberable {
     #subjectID: string;

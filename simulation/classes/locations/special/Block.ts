@@ -1,4 +1,4 @@
-import { ILocation } from "../../../types/interfaces/ILocation";
+import { ILocation } from "../../../interfaces/ILocation";
 
 import { Coordinate } from "../../../types/primitives";
 

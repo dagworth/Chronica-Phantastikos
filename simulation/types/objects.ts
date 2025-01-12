@@ -1,4 +1,4 @@
-import { Modifier } from "./interfaces/Modifier";
+import { Modifier } from "../interfaces/Modifier";
 
 import { AgeGroup, Coordinate, Gender, ItemType, LocationType, Race } from "./primitives";
 

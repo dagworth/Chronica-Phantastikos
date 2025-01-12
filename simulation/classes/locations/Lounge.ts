@@ -1,6 +1,6 @@
 import { Location } from "./master/Location";
 
-import { Coordinate } from "../../../../types/primitives";
+import { Coordinate } from "../../types/primitives";
 
 export class Lounge extends Location {
     constructor(

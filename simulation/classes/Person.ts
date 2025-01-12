@@ -1,10 +1,10 @@
 import { Memory } from "./Memory";
 
-import { Rememberable } from "../../types/interfaces/Rememberable";
-import { Modifier } from "../../types/interfaces/Modifier";
+import { Rememberable } from "../interfaces/Rememberable";
+import { Modifier } from "../interfaces/Modifier";
 
-import { IndividualStatistics, PersonData, WriteableMemory } from "../../types/objects";
-import { Coordinate, Gender, Race, Statistic } from "../../types/primitives";
+import { IndividualStatistics, PersonData, WriteableMemory } from "../types/objects";
+import { Coordinate, Gender, Race, Statistic } from "../types/primitives";
 
 export class Person implements Rememberable {
     #id: string;

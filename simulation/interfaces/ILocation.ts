@@ -1,9 +1,9 @@
-import { Person } from "../../simulation/classes/Person";
+import { Person } from "../classes/Person";
 
 import { Rememberable } from "./Rememberable";
 
-import { LocationData } from "../objects";
-import { Coordinate, LocationType } from "../primitives";
+import { LocationData } from "../types/objects";
+import { Coordinate, LocationType } from "../types/primitives";
 
 export interface ILocation extends Rememberable {
     getID(): string;
