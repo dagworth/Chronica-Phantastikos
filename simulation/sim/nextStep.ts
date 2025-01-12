@@ -4,7 +4,7 @@ import * as fs from "fs";
 import { Person, ILocation } from "../classes";
 
 import { createLocation, createPerson } from "./creator";
-import { ageUp } from "./module/helper";
+import { ageUp } from "../modules/ageUp";
 import { updateState } from "../storage/memory/stateUpdater";
 import { stage1 } from "./decision-making";
 

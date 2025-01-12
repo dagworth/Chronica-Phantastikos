@@ -11,7 +11,7 @@ import { newId } from "./storage/id/newid";
 import { PersonData, Race, SimulationState, races } from "../types";
 
 //this is here just so we can actually spawn people in, we gonna make an actual map later
-let placeholder_lounge: ILocation = createLocation({
+const placeholder_lounge: ILocation = createLocation({
     name: "noob place",
     id: newId(),
     locationCoordinates: [[0, 0]],

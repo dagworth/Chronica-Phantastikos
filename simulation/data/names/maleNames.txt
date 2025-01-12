@@ -351,3 +351,5 @@ Gall
 Jando
 Boon
 Vay
+Latrox
+Garv
