@@ -7,6 +7,7 @@ import { Rememberable } from "../interfaces/Rememberable";
 
 import { IndividualStatistics, PersonData, WriteableMemory } from "../types/objects";
 import { Coordinate, Gender, Race, Statistic } from "../types/primitives";
+import { Item } from "./modifiers/items/master/Item";
 
 export class Person implements Rememberable {
     private id: string;
@@ -175,6 +176,25 @@ export class Person implements Rememberable {
 
     ageUp(): void {
         this.age++;
+    }
+
+    hasItem(item: Item): boolean {
+        return this.getModifiers().some((modifier: Modifier) => modifier.equals(item));
+    }
+
+    takeItem(item: Item): void {
+        if (this.hasItem(item)) return;
+        this.setModifiers([...this.getModifiers(), item]);
+    }
+
+    removeItem(item: Item): void {
+        this.setModifiers(this.getModifiers().filter((modifier: Modifier) => !modifier.equals(item)));
+    }
+
+    giveItem(person: Person, item: Item): void {
+        if (!this.hasItem(item)) return;
+        person.takeItem(item);
+        this.removeItem(item);
     }
 
     jsonify(): PersonData {
