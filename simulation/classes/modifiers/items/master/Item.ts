@@ -54,12 +54,7 @@ export class Item extends Modifier {
 
     public override jsonify(): ItemData {
         return {
-            id: this.getID(),
-            name: this.getName(),
-            desc: this.getDesc(),
-            modifierType: this.getModifierType(),
-            impressionable: this.getImpressionability(),
-            status: this.getStatus(),
+            ...super.jsonify(),
             itemType: this.getItemType(),
             price: this.getPrice(),
             weight: this.getWeight(),

@@ -47,19 +47,7 @@ export class Sword extends MeleeWeapon {
 
     public override jsonify(): AxeData {
         return {
-            id: this.getID(),
-            name: this.getName(),
-            desc: this.getDesc(),
-            modifierType: this.getModifierType(),
-            impressionable: this.getImpressionability(),
-            status: this.getStatus(),
-            itemType: this.getItemType(),
-            price: this.getPrice(),
-            weight: this.getWeight(),
-            damage: this.getDamage(),
-            weaponType: this.getWeaponType(),
-            attackSpeed: this.getAttackSpeed(),
-            meleeWeaponType: this.getMeleeWeaponType(),
+            ...super.jsonify(),
             sharpness: this.getSharpness(),
         };
     }

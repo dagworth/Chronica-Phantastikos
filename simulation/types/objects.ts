@@ -10,8 +10,10 @@ import {
     MeleeWeaponType,
     ModifierType,
     Race,
+    RangedWeaponType,
     WeaponType,
 } from "./primitives";
+import { ReplaceKeys } from "../../lib/types/types";
 
 export type CharacterStatistics = {
     intelligence: number;
@@ -114,3 +116,16 @@ export type SpearData = MeleeWeaponData & {
     pointedness: IntClosedRange<1, 100>;
     length: IntClosedRange<1, 200>;
 };
+
+export type RangedWeaponData = WeaponData & {
+    ammo: number;
+    range: IntClosedRange<1, 3>;
+    projectilesFiredPerShot: IntClosedRange<1, 10>;
+    rangedWeaponType: RangedWeaponType;
+};
+
+export type BowData = ReplaceKeys<
+    ReplaceKeys<RangedWeaponData, "range", 1 | 2>,
+    "projectilesFiredPerShot",
+    1 | 2 | 3
+>;

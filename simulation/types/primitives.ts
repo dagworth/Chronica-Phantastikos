@@ -31,3 +31,5 @@ export type WeaponType = "Melee" | "Ranged";
 export type MeleeWeaponType = "Sword" | "Axe" | "Spear" | "Bat" | "Pickaxe";
 
 export type Material = "steel" | "carbon" | "titanium" | "iron" | "bronze" | "obsidian" | "gold" | "diamond";
+
+export type RangedWeaponType = "Bow";

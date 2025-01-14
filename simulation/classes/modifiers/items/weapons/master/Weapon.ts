@@ -54,15 +54,7 @@ export class Weapon extends Item {
 
     public override jsonify(): WeaponData {
         return {
-            id: this.getID(),
-            name: this.getName(),
-            desc: this.getDesc(),
-            modifierType: this.getModifierType(),
-            impressionable: this.getImpressionability(),
-            status: this.getStatus(),
-            itemType: this.getItemType(),
-            price: this.getPrice(),
-            weight: this.getWeight(),
+            ...super.jsonify(),
             damage: this.getDamage(),
             weaponType: this.getWeaponType(),
             attackSpeed: this.getAttackSpeed(),
