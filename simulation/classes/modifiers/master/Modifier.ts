@@ -1,5 +1,4 @@
 import { IModifier } from "../../../interfaces/IModifier";
-import { Comparable } from "../../../interfaces/Comparable";
 
 import { ModifierData } from "../../../types/objects";
 import { ModifierType } from "../../../types/primitives";
