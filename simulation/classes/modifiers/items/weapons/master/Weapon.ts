@@ -1,29 +1,31 @@
 import { Item } from "../../master/Item";
 
+import { IntClosedRange } from "type-fest";
 import { WeaponData } from "../../../../../types/objects";
-import { ItemType, ModifierType, WeaponType } from "../../../../../types/primitives";
+import { WeaponType } from "../../../../../types/primitives";
 
 export class Weapon extends Item {
-    private damage: number;
+    private damage: IntClosedRange<1, 100>;
     private weaponType: WeaponType;
+    private attackSpeed: IntClosedRange<1, 100>; // 1 - 100 (Average number of possible hits per 1 minute)
 
     public constructor(
         id: string,
         name: string,
         desc: string,
-        modifierType: ModifierType,
-        impressionability: number,
-        status: number,
-        itemType: ItemType,
+        impressionability: IntClosedRange<1, 100>,
+        status: IntClosedRange<1, 100>,
         price: number,
         weight: number,
-        damage: number,
+        damage: IntClosedRange<1, 100>,
         weaponType: WeaponType,
+        attackSpeed: IntClosedRange<1, 100>,
     ) {
-        super(id, name, desc, modifierType, impressionability, status, itemType, price, weight);
+        super(id, name, desc, impressionability, status, "Weapon", price, weight);
 
         this.damage = damage;
         this.weaponType = weaponType;
+        this.attackSpeed = attackSpeed;
     }
 
     public getDamage(): number {
@@ -34,12 +36,20 @@ export class Weapon extends Item {
         return this.weaponType;
     }
 
-    public setDamage(damage: number): void {
+    public getAttackSpeed(): IntClosedRange<1, 100> {
+        return this.attackSpeed;
+    }
+
+    public setDamage(damage: IntClosedRange<1, 100>): void {
         this.damage = damage;
     }
 
     public setWeaponType(weaponType: WeaponType): void {
         this.weaponType = weaponType;
+    }
+
+    public setAttackSpeed(attackSpeed: IntClosedRange<1, 100>): void {
+        this.attackSpeed = attackSpeed;
     }
 
     public override jsonify(): WeaponData {
@@ -55,6 +65,7 @@ export class Weapon extends Item {
             weight: this.getWeight(),
             damage: this.getDamage(),
             weaponType: this.getWeaponType(),
+            attackSpeed: this.getAttackSpeed(),
         };
     }
 }

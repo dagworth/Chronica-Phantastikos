@@ -1,11 +1,13 @@
 import { Modifier } from "../classes/modifiers/master/Modifier";
 
+import { IntClosedRange } from "type-fest";
 import {
     AgeGroup,
     Coordinate,
     Gender,
     ItemType,
     LocationType,
+    MeleeWeaponType,
     ModifierType,
     Race,
     WeaponType,
@@ -90,4 +92,25 @@ export type ItemData = ModifierData & {
 export type WeaponData = ItemData & {
     damage: number;
     weaponType: WeaponType;
+    attackSpeed: IntClosedRange<1, 100>;
+};
+
+export type MeleeWeaponData = WeaponData & { meleeWeaponType: MeleeWeaponType };
+
+export type SwordData = MeleeWeaponData & {
+    sharpness: IntClosedRange<1, 100>;
+    length: IntClosedRange<1, 100>;
+};
+
+export type AxeData = MeleeWeaponData & {
+    sharpness: IntClosedRange<1, 100>;
+};
+
+export type PickaxeData = MeleeWeaponData & {
+    pointedness: IntClosedRange<1, 100>;
+};
+
+export type SpearData = MeleeWeaponData & {
+    pointedness: IntClosedRange<1, 100>;
+    length: IntClosedRange<1, 200>;
 };

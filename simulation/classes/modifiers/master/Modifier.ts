@@ -1,5 +1,6 @@
 import { IModifier } from "../../../interfaces/IModifier";
 
+import { IntClosedRange } from "type-fest";
 import { ModifierData } from "../../../types/objects";
 import { ModifierType } from "../../../types/primitives";
 
@@ -8,16 +9,16 @@ export class Modifier implements IModifier {
     private name: string;
     private desc: string;
     private modifierType: ModifierType;
-    private impressionability: number;
-    private status: number;
+    private impressionability: IntClosedRange<1, 100>;
+    private status: IntClosedRange<1, 100>;
 
     constructor(
         id: string,
         name: string,
         desc: string,
         modifierType: ModifierType,
-        impressionability: number,
-        status: number,
+        impressionability: IntClosedRange<1, 100>,
+        status: IntClosedRange<1, 100>,
     ) {
         this.id = id;
         this.name = name;
@@ -43,11 +44,11 @@ export class Modifier implements IModifier {
         return this.modifierType;
     }
 
-    getImpressionability(): number {
+    getImpressionability(): IntClosedRange<1, 100> {
         return this.impressionability;
     }
 
-    getStatus(): number {
+    getStatus(): IntClosedRange<1, 100> {
         return this.status;
     }
 
@@ -67,11 +68,11 @@ export class Modifier implements IModifier {
         this.modifierType = modifierType;
     }
 
-    setImpressionability(impressionability: number): void {
+    setImpressionability(impressionability: IntClosedRange<1, 100>): void {
         this.impressionability = impressionability;
     }
 
-    setStatus(status: number): void {
+    setStatus(status: IntClosedRange<1, 100>): void {
         this.status = status;
     }
 

@@ -1,7 +1,8 @@
 import { Modifier } from "../../master/Modifier";
 
 import { ItemData } from "../../../../types/objects";
-import { ItemType, ModifierType } from "../../../../types/primitives";
+import { ItemType } from "../../../../types/primitives";
+import { IntClosedRange } from "type-fest";
 
 export class Item extends Modifier {
     private itemType: ItemType;
@@ -12,14 +13,13 @@ export class Item extends Modifier {
         id: string,
         name: string,
         desc: string,
-        modifierType: ModifierType,
-        impressionability: number,
-        status: number,
+        impressionability: IntClosedRange<1, 100>,
+        status: IntClosedRange<1, 100>,
         itemType: ItemType,
         price: number,
         weight: number,
     ) {
-        super(id, name, desc, modifierType, impressionability, status);
+        super(id, name, desc, "Item", impressionability, status);
 
         this.itemType = itemType;
         this.price = price;

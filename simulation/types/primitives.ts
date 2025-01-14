@@ -27,3 +27,7 @@ export type LocationType = "Lounge";
 export type ModifierType = "Item" | "BodyPart";
 
 export type WeaponType = "Melee" | "Ranged";
+
+export type MeleeWeaponType = "Sword" | "Axe" | "Spear" | "Bat" | "Pickaxe";
+
+export type Material = "steel" | "carbon" | "titanium" | "iron" | "bronze" | "obsidian" | "gold" | "diamond";
