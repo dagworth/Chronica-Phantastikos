@@ -1,8 +1,8 @@
-import { Modifier } from "./Modifier";
+import { IModifier } from "./IModifier";
 
 import { ItemData } from "../types/objects";
 
-export interface Item extends Modifier {
+export interface IItem extends IModifier {
     actual: ItemData;
     perceived: ItemData;
     description: string;

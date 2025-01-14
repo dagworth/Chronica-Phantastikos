@@ -41,7 +41,7 @@ export class Memory implements Rememberable {
         this.#associations = associations;
     }
 
-    // transformations
+    // else
 
     jsonify(): WriteableMemory {
         return {

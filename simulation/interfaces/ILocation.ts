@@ -1,4 +1,5 @@
 import { Person } from "../classes/Person";
+import { Block } from "../classes/locations/special/Block";
 
 import { Rememberable } from "./Rememberable";
 
@@ -10,18 +11,19 @@ export interface ILocation extends Rememberable {
     getName(): string;
     getLocationType(): string;
     getCoordinates(): ReadonlyArray<Coordinate>;
-    getEntryPoint(): Coordinate;
-    getPeople(): string[];
+    getBlocks(): ReadonlyArray<Block>;
+    getEntryPoint(): Block;
+    getPeople(): Person[];
 
     setID(id: string): void;
     setName(name: string): void;
     setLocationType(locationType: LocationType): void;
-    setCoordinates(coordinates: Coordinate[]): void;
-    setEntryPoint(entryPoint: Coordinate): void;
-    setPeople(name: string[]): void;
+    setBlocks(coordinates: ReadonlyArray<Block>): void;
+    setEntryPoint(entryPoint: Block): void;
+    setPeople(name: Person[]): void;
 
     addPerson(person: Person): void;
-    removePerson(personID: string): void;
+    removePerson(personID: Person, newBlock: Block): void;
 
     jsonify(): LocationData;
 }

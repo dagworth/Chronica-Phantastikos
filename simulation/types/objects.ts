@@ -1,6 +1,6 @@
-import { Modifier } from "../interfaces/Modifier";
+import { Modifier } from "../classes/modifiers/master/Modifier";
 
-import { AgeGroup, Coordinate, Gender, ItemType, LocationType, Race } from "./primitives";
+import { AgeGroup, Coordinate, Gender, ItemType, LocationType, ModifierType, Race } from "./primitives";
 
 export type ItemData = {
     type: ItemType;
@@ -46,10 +46,16 @@ export type PersonData = {
     gender: Gender;
     age: number;
 
-    location: Coordinate;
+    coords: Coordinate;
     stats: IndividualStatistics;
     memories: { [key: string]: WriteableMemory };
     modifiers: ReadonlyArray<Modifier>;
+};
+
+export type BlockData = {
+    coords: Coordinate;
+    locationID: string;
+    people: string[];
 };
 
 export type LocationData = {
@@ -57,8 +63,17 @@ export type LocationData = {
     name: string;
     locationType: LocationType;
 
-    coordinates: Coordinate[];
+    blocks: BlockData[];
     entryPoint: Coordinate;
 
     people: string[];
+};
+
+export type ModifierData = {
+    id: string;
+    name: string;
+    desc: string;
+    modifierType: ModifierType;
+    impressionable: number;
+    status: number;
 };

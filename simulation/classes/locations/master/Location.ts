@@ -1,38 +1,38 @@
 import { Person } from "../../Person";
+import { Block } from "../special/Block";
 
 import { ILocation } from "../../../interfaces/ILocation";
+import { Comparable } from "../../../interfaces/Comparable";
 
-import { LocationData } from "../../../types/objects";
+import { BlockData, LocationData } from "../../../types/objects";
 import { Coordinate, LocationType } from "../../../types/primitives";
 
-export class Location implements ILocation {
+export class Location implements ILocation, Comparable {
     protected id: string;
     protected name: string;
     protected locationType: LocationType;
 
-    protected coordinates: Coordinate[];
-    protected entryPoint: Coordinate;
+    protected blocks: Block[];
+    protected entryPoint: Block;
 
-    protected people: string[];
+    private people: Person[];
 
     constructor(
         id: string,
         name: string,
         locationType: LocationType,
 
-        coordinates: Coordinate[],
-        entryPoint: Coordinate,
-
-        people: string[],
+        blocks: Block[],
+        entryPoint: Block,
     ) {
         this.id = id;
         this.name = name;
         this.locationType = locationType;
 
-        this.coordinates = [...coordinates].map((coord: Coordinate): Coordinate => [...coord]);
-        this.entryPoint = [...entryPoint];
+        this.blocks = [...blocks];
+        this.entryPoint = entryPoint;
 
-        this.people = [...people];
+        this.people = [...this.blocks].map((block: Block): Person[] => block.getPeople()).flat(1);
     }
 
     // getters
@@ -49,15 +49,19 @@ export class Location implements ILocation {
         return this.locationType;
     }
 
+    getBlocks(): ReadonlyArray<Block> {
+        return [...this.blocks];
+    }
+
     getCoordinates(): Coordinate[] {
-        return [...this.coordinates].map((coord: Coordinate): Coordinate => [...coord]);
+        return [...this.getBlocks()].map((block: Block): Coordinate => block.getCoords());
     }
 
-    getEntryPoint(): Coordinate {
-        return [...this.entryPoint];
+    getEntryPoint(): Block {
+        return this.entryPoint;
     }
 
-    getPeople(): string[] {
+    getPeople(): Person[] {
         return [...this.people];
     }
 
@@ -75,30 +79,48 @@ export class Location implements ILocation {
         this.locationType = locationType;
     }
 
-    setCoordinates(coordinates: Coordinate[]): void {
-        this.coordinates = [...coordinates].map((coord: Coordinate): Coordinate => [...coord]);
+    setBlocks(blocks: ReadonlyArray<Block>): void {
+        this.blocks = [...blocks];
     }
 
-    setEntryPoint(entryPoint: Coordinate): void {
-        this.entryPoint = [...entryPoint];
+    setEntryPoint(entryPoint: Block): void {
+        this.entryPoint = entryPoint;
     }
 
-    setPeople(people: string[]): void {
+    setPeople(people: Person[]): void {
         this.people = [...people];
     }
 
-    // updaters
+    // else
 
     addPerson(person: Person): void {
-        this.people.push(person.getID());
-        person.setLocation(this.getEntryPoint());
+        this.people.push(person);
+        person.setLocation(this);
     }
 
-    removePerson(personID: string): void {
-        this.people = this.getPeople().filter((pID: string): boolean => pID !== personID);
+    removePerson(person: Person, newBlock: Block): void {
+        this.setPeople(this.getPeople().filter((p: Person): boolean => p.getID() !== person.getID()));
+        person.setBlock(newBlock);
     }
 
-    // transformations
+    hasPerson(person: Person): boolean {
+        return this.getPeople()
+            .map((p: Person): string => p.getID())
+            .includes(person.getID());
+    }
+
+    hasBlock(block: Block): boolean {
+        return (
+            this.getCoordinates().filter(
+                (coords: Coordinate): boolean =>
+                    coords[0] === block.getCoords()[0] && coords[1] === block.getCoords()[1],
+            ).length >= 1
+        );
+    }
+
+    equals(location: Location | null): boolean {
+        return location == null ? false : this.getID() === location.getID();
+    }
 
     jsonify(): LocationData {
         return {
@@ -106,10 +128,10 @@ export class Location implements ILocation {
             name: this.getName(),
 
             locationType: this.getLocationType(),
-            coordinates: this.getCoordinates(),
-            entryPoint: this.getEntryPoint(),
+            blocks: this.getBlocks().map((block: Block): BlockData => block.jsonify()),
+            entryPoint: this.getEntryPoint().getCoords(),
 
-            people: this.getPeople(),
+            people: this.getPeople().map((person: Person): string => person.getID()),
         };
     }
 }

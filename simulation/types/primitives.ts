@@ -16,10 +16,12 @@ export type Statistic =
     | "pride"
     | "lifeSpan";
 
-export type Coordinate = [number, number];
+export type Coordinate = Readonly<[number, number]>;
 
 export type AgeGroup = "infant" | "toddler" | "child" | "teenager" | "young adult" | "middle-aged" | "senior";
 
-export type ItemType = "Clothes" | "Weapon" | "Food" | "Drink" | "Other";
+export type ItemType = "clothes" | "weapon" | "food" | "drink" | "other";
 
 export type LocationType = "Lounge";
+
+export type ModifierType = "Item" | "BodyPart";
