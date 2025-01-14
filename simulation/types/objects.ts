@@ -1,6 +1,15 @@
 import { Modifier } from "../classes/modifiers/master/Modifier";
 
-import { AgeGroup, Coordinate, Gender, ItemType, LocationType, ModifierType, Race } from "./primitives";
+import {
+    AgeGroup,
+    Coordinate,
+    Gender,
+    ItemType,
+    LocationType,
+    ModifierType,
+    Race,
+    WeaponType,
+} from "./primitives";
 
 export type CharacterStatistics = {
     intelligence: number;
@@ -76,4 +85,9 @@ export type ItemData = ModifierData & {
     itemType: ItemType;
     price: number;
     weight: number;
+};
+
+export type WeaponData = ItemData & {
+    damage: number;
+    weaponType: WeaponType;
 };

@@ -34,8 +34,6 @@ export class Location implements ILocation {
         this.people = [...this.blocks].map((block: Block): Person[] => block.getPeople()).flat(1);
     }
 
-    // getters
-
     public getID(): string {
         return this.id;
     }
@@ -64,8 +62,6 @@ export class Location implements ILocation {
         return [...this.people];
     }
 
-    // setters
-
     public setID(id: string): void {
         this.id = id;
     }
@@ -89,8 +85,6 @@ export class Location implements ILocation {
     public setPeople(people: Person[]): void {
         this.people = [...people];
     }
-
-    // else
 
     public addPerson(person: Person): void {
         this.people.push(person);

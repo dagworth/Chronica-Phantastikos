@@ -24,8 +24,6 @@ export class Block implements Rememberable, Comparable {
         this.locationID = location == null ? "" : location.getID();
     }
 
-    // Getters
-
     public getCoords(): Coordinate {
         return [...this.coords];
     }
@@ -54,8 +52,6 @@ export class Block implements Rememberable, Comparable {
         );
     }
 
-    // Setters
-
     public setCoords(coords: Coordinate) {
         this.coords = [coords[0], coords[1]];
     }
@@ -81,8 +77,6 @@ export class Block implements Rememberable, Comparable {
         this.setPeople(this.getPeople().filter((p: Person): boolean => p.getID() !== person.getID()));
         person.setBlock(newBlock);
     }
-
-    // else
 
     public hasPerson(person: Person) {
         return this.getPeople().filter((p: Person): boolean => p.getID() === person.getID()).length >= 1;

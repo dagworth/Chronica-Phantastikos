@@ -16,8 +16,6 @@ export class Memory implements Rememberable {
         this.associations = [...associations];
     }
 
-    // getters
-
     getSubjectID(): string {
         return this.subjectID;
     }
@@ -30,8 +28,6 @@ export class Memory implements Rememberable {
         return [...this.associations];
     }
 
-    // setters
-
     setSubjectID(subjectID: string): void {
         this.subjectID = subjectID;
     }
@@ -43,8 +39,6 @@ export class Memory implements Rememberable {
     setAssociations(associations: string[]): void {
         this.associations = associations;
     }
-
-    // else
 
     equals(memory: Memory): boolean {
         return (

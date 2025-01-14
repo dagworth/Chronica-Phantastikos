@@ -53,8 +53,6 @@ export class Person implements Rememberable {
         this.location = location;
     }
 
-    // getters
-
     getID(): string {
         return this.id;
     }
@@ -102,8 +100,6 @@ export class Person implements Rememberable {
     getLogs(): string[] {
         return [...this.logs];
     }
-
-    // setters
 
     setID(id: string): void {
         this.id = id;
@@ -172,8 +168,6 @@ export class Person implements Rememberable {
     setLogs(logs: string[]): void {
         this.logs = [...logs];
     }
-
-    // updaters
 
     changeStat(stat: Statistic, newValue: number): void {
         this.statistics[stat] = newValue;

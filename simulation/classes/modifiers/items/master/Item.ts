@@ -20,12 +20,11 @@ export class Item extends Modifier {
         weight: number,
     ) {
         super(id, name, desc, modifierType, impressionability, status);
+
         this.itemType = itemType;
         this.price = price;
         this.weight = weight;
     }
-
-    // getters
 
     public getItemType(): ItemType {
         return this.itemType;
@@ -38,8 +37,6 @@ export class Item extends Modifier {
     public getWeight(): number {
         return this.weight;
     }
-
-    // setters
 
     public setItemType(itemType: ItemType): void {
         this.itemType = itemType;

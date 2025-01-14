@@ -27,8 +27,6 @@ export class Modifier implements IModifier {
         this.status = status;
     }
 
-    // getters
-
     getID(): string {
         return this.id;
     }
@@ -53,8 +51,6 @@ export class Modifier implements IModifier {
         return this.status;
     }
 
-    // setters
-
     setID(id: string): void {
         this.id = id;
     }
@@ -78,8 +74,6 @@ export class Modifier implements IModifier {
     setStatus(status: number): void {
         this.status = status;
     }
-
-    // else
 
     equals(modifier: Modifier): boolean {
         return this.getID() === modifier.getID();

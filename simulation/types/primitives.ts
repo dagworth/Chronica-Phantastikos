@@ -25,3 +25,5 @@ export type ItemType = "Clothes" | "Weapon" | "Food" | "Drink";
 export type LocationType = "Lounge";
 
 export type ModifierType = "Item" | "BodyPart";
+
+export type WeaponType = "Melee" | "Ranged";
