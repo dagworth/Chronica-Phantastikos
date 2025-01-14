@@ -2,18 +2,17 @@ import { Person } from "../../Person";
 import { Block } from "../special/Block";
 
 import { ILocation } from "../../../interfaces/ILocation";
-import { Comparable } from "../../../interfaces/Comparable";
 
 import { BlockData, LocationData } from "../../../types/objects";
 import { Coordinate, LocationType } from "../../../types/primitives";
 
-export class Location implements ILocation, Comparable {
-    protected id: string;
-    protected name: string;
-    protected locationType: LocationType;
+export class Location implements ILocation {
+    private id: string;
+    private name: string;
+    private locationType: LocationType;
 
-    protected blocks: Block[];
-    protected entryPoint: Block;
+    private blocks: Block[];
+    private entryPoint: Block;
 
     private people: Person[];
 
@@ -37,79 +36,79 @@ export class Location implements ILocation, Comparable {
 
     // getters
 
-    getID(): string {
+    public getID(): string {
         return this.id;
     }
 
-    getName(): string {
+    public getName(): string {
         return this.name;
     }
 
-    getLocationType(): LocationType {
+    public getLocationType(): LocationType {
         return this.locationType;
     }
 
-    getBlocks(): ReadonlyArray<Block> {
+    public getBlocks(): ReadonlyArray<Block> {
         return [...this.blocks];
     }
 
-    getCoordinates(): Coordinate[] {
+    public getCoordinates(): Coordinate[] {
         return [...this.getBlocks()].map((block: Block): Coordinate => block.getCoords());
     }
 
-    getEntryPoint(): Block {
+    public getEntryPoint(): Block {
         return this.entryPoint;
     }
 
-    getPeople(): Person[] {
+    public getPeople(): Person[] {
         return [...this.people];
     }
 
     // setters
 
-    setID(id: string): void {
+    public setID(id: string): void {
         this.id = id;
     }
 
-    setName(name: string): void {
+    public setName(name: string): void {
         this.name = name;
     }
 
-    setLocationType(locationType: LocationType): void {
+    public setLocationType(locationType: LocationType): void {
         this.locationType = locationType;
     }
 
-    setBlocks(blocks: ReadonlyArray<Block>): void {
+    public setBlocks(blocks: ReadonlyArray<Block>): void {
         this.blocks = [...blocks];
     }
 
-    setEntryPoint(entryPoint: Block): void {
+    public setEntryPoint(entryPoint: Block): void {
         this.entryPoint = entryPoint;
     }
 
-    setPeople(people: Person[]): void {
+    public setPeople(people: Person[]): void {
         this.people = [...people];
     }
 
     // else
 
-    addPerson(person: Person): void {
+    public addPerson(person: Person): void {
         this.people.push(person);
         person.setLocation(this);
     }
 
-    removePerson(person: Person, newBlock: Block): void {
+    public removePerson(person: Person, newBlock: Block): void {
         this.setPeople(this.getPeople().filter((p: Person): boolean => p.getID() !== person.getID()));
         person.setBlock(newBlock);
     }
 
-    hasPerson(person: Person): boolean {
+    public hasPerson(person: Person): boolean {
         return this.getPeople()
             .map((p: Person): string => p.getID())
             .includes(person.getID());
     }
 
-    hasBlock(block: Block): boolean {
+    public hasBlock(block: Block): boolean {
         return (
             this.getCoordinates().filter(
                 (coords: Coordinate): boolean =>
@@ -118,11 +117,11 @@ export class Location implements ILocation, Comparable {
         );
     }
 
-    equals(location: Location | null): boolean {
+    public equals(location: Location | null): boolean {
         return location == null ? false : this.getID() === location.getID();
     }
 
-    jsonify(): LocationData {
+    public jsonify(): LocationData {
         return {
             id: this.getID(),
             name: this.getName(),

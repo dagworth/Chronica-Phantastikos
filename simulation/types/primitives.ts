@@ -20,7 +20,7 @@ export type Coordinate = Readonly<[number, number]>;
 
 export type AgeGroup = "infant" | "toddler" | "child" | "teenager" | "young adult" | "middle-aged" | "senior";
 
-export type ItemType = "clothes" | "weapon" | "food" | "drink" | "other";
+export type ItemType = "Clothes" | "Weapon" | "Food" | "Drink";
 
 export type LocationType = "Lounge";
 

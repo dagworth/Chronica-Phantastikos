@@ -1,47 +1,70 @@
 import { Rememberable } from "../interfaces/Rememberable";
 
+import { foldt } from "../../lib/Array";
+
 import { PerceptionModifiers, WriteableMemory } from "../types/objects";
+import { Statistic } from "../types/primitives";
 
 export class Memory implements Rememberable {
-    #subjectID: string;
-    #subjectPerceptionModifiers: PerceptionModifiers;
-    #associations: string[];
+    private subjectID: string;
+    private subjectPerceptionModifiers: PerceptionModifiers;
+    private associations: string[];
 
     constructor(subjectID: string, subjectPerceptionModifiers: PerceptionModifiers, associations: string[]) {
-        this.#subjectID = subjectID;
-        this.#subjectPerceptionModifiers = subjectPerceptionModifiers;
-        this.#associations = associations;
+        this.subjectID = subjectID;
+        this.subjectPerceptionModifiers = { ...subjectPerceptionModifiers };
+        this.associations = [...associations];
     }
 
     // getters
 
     getSubjectID(): string {
-        return this.#subjectID;
+        return this.subjectID;
     }
 
     getSubjectPerceptionModifiers(): PerceptionModifiers {
-        return this.#subjectPerceptionModifiers;
+        return { ...this.subjectPerceptionModifiers };
     }
 
     getAssociations(): string[] {
-        return this.#associations;
+        return [...this.associations];
     }
 
     // setters
 
     setSubjectID(subjectID: string): void {
-        this.#subjectID = subjectID;
+        this.subjectID = subjectID;
     }
 
     setSubjectPerceptionModifiers(subjectPerceptionModifiers: PerceptionModifiers): void {
-        this.#subjectPerceptionModifiers = subjectPerceptionModifiers;
+        this.subjectPerceptionModifiers = subjectPerceptionModifiers;
     }
 
     setAssociations(associations: string[]): void {
-        this.#associations = associations;
+        this.associations = associations;
     }
 
     // else
+
+    equals(memory: Memory): boolean {
+        return (
+            this.getSubjectID() === memory.getSubjectID() &&
+            foldt(
+                (b1: boolean, b2: boolean): boolean => b1 && b2,
+                this.getAssociations().map(
+                    (association: string, i: number): boolean => association === memory.getAssociations()[i],
+                ),
+            ) &&
+            foldt(
+                (b1: boolean, b2: boolean): boolean => b1 && b2,
+                Object.keys(this.getSubjectPerceptionModifiers()).map(
+                    (key: string): boolean =>
+                        this.getSubjectPerceptionModifiers()[key as Statistic] ===
+                        memory.getSubjectPerceptionModifiers()[key as Statistic],
+                ),
+            )
+        );
+    }
 
     jsonify(): WriteableMemory {
         return {

@@ -1,17 +1,13 @@
 import { Location } from "./master/Location";
-
-import { Coordinate } from "../../types/primitives";
-
+import { Block } from "./special/Block";
 export class Lounge extends Location {
     constructor(
         id: string,
         name: string,
 
-        coordinates: Coordinate[],
-        entryPoint: Coordinate,
-
-        people: string[],
+        blocks: Block[],
+        entryPoint: Block,
     ) {
-        super(id, name, "Lounge", coordinates, entryPoint, people);
+        super(id, name, "Lounge", blocks, entryPoint);
     }
 }

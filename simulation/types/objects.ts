@@ -2,12 +2,6 @@ import { Modifier } from "../classes/modifiers/master/Modifier";
 
 import { AgeGroup, Coordinate, Gender, ItemType, LocationType, ModifierType, Race } from "./primitives";
 
-export type ItemData = {
-    type: ItemType;
-    price: number; // how many gold coins does it cost to buy the item
-    weight: number; // weight of the item in Kg
-};
-
 export type CharacterStatistics = {
     intelligence: number;
     trusting: number;
@@ -76,4 +70,10 @@ export type ModifierData = {
     modifierType: ModifierType;
     impressionable: number;
     status: number;
+};
+
+export type ItemData = ModifierData & {
+    itemType: ItemType;
+    price: number;
+    weight: number;
 };

@@ -9,20 +9,20 @@ import { IndividualStatistics, PersonData, WriteableMemory } from "../types/obje
 import { Coordinate, Gender, Race, Statistic } from "../types/primitives";
 
 export class Person implements Rememberable {
-    protected id: string;
-    protected name: string;
-    protected race: Race;
-    protected gender: Gender;
-    protected age: number;
+    private id: string;
+    private name: string;
+    private race: Race;
+    private gender: Gender;
+    private age: number;
 
-    protected block: Block;
-    protected location: Location | null;
+    private block: Block;
+    private location: Location | null;
 
-    protected statistics: IndividualStatistics;
-    protected memories: { [memoryID: string]: Memory };
-    protected modifiers: Modifier[];
+    private statistics: IndividualStatistics;
+    private memories: { [memoryID: string]: Memory };
+    private modifiers: Modifier[];
 
-    protected logs: string[] = [];
+    private logs: string[] = [];
 
     constructor(
         id: string,
@@ -201,5 +201,9 @@ export class Person implements Rememberable {
             ),
             modifiers: [...this.getModifiers()],
         };
+    }
+
+    equals(person: Person): boolean {
+        return this.getID() === person.getID();
     }
 }

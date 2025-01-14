@@ -2,11 +2,12 @@ import { Person } from "../classes/Person";
 import { Block } from "../classes/locations/special/Block";
 
 import { Rememberable } from "./Rememberable";
+import { Comparable } from "./Comparable";
 
 import { LocationData } from "../types/objects";
 import { Coordinate, LocationType } from "../types/primitives";
 
-export interface ILocation extends Rememberable {
+export interface ILocation extends Rememberable, Comparable {
     getID(): string;
     getName(): string;
     getLocationType(): string;

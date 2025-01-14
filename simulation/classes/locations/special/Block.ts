@@ -26,27 +26,27 @@ export class Block implements Rememberable, Comparable {
 
     // Getters
 
-    getCoords(): Coordinate {
+    public getCoords(): Coordinate {
         return [...this.coords];
     }
 
-    getLocation(): Location | null {
+    public getLocation(): Location | null {
         return this.location;
     }
 
-    getPeople(): Person[] {
+    public getPeople(): Person[] {
         return [...this.people];
     }
 
-    getLocationID(): string {
+    public getLocationID(): string {
         return this.locationID;
     }
 
-    getPeopleIDs(): string[] {
+    public getPeopleIDs(): string[] {
         return [...this.getPeople().map((person: Person): string => person.getID())];
     }
 
-    getOtherBlocks(): Block[] {
+    public getOtherBlocks(): Block[] {
         return (
             this.getLocation()
                 ?.getBlocks()
@@ -56,47 +56,47 @@ export class Block implements Rememberable, Comparable {
 
     // Setters
 
-    setCoords(coords: Coordinate) {
+    public setCoords(coords: Coordinate) {
         this.coords = [coords[0], coords[1]];
     }
 
-    setLocationID(locationID: string) {
+    public setLocationID(locationID: string) {
         this.locationID = locationID;
     }
 
-    setLocation(location: Location | null) {
+    public setLocation(location: Location | null) {
         this.location = location;
     }
 
-    setPeople(people: Person[]) {
+    public setPeople(people: Person[]) {
         this.people = [...people];
     }
 
-    addPerson(person: Person) {
+    public addPerson(person: Person) {
         if (this.hasPerson(person)) return;
         person.setBlock(this);
     }
 
-    removePerson(person: Person, newBlock: Block) {
+    public removePerson(person: Person, newBlock: Block) {
         this.setPeople(this.getPeople().filter((p: Person): boolean => p.getID() !== person.getID()));
         person.setBlock(newBlock);
     }
 
     // else
 
-    hasPerson(person: Person) {
+    public hasPerson(person: Person) {
         return this.getPeople().filter((p: Person): boolean => p.getID() === person.getID()).length >= 1;
     }
 
-    isAtLocation(location: Location | null) {
+    public isAtLocation(location: Location | null) {
         return this.getLocation() == null ? location == null : this.getLocation()?.equals(location);
     }
 
-    equals(block: Block): boolean {
+    public equals(block: Block): boolean {
         return this.getCoords()[0] === block.getCoords()[0] && this.getCoords()[1] === block.getCoords()[1];
     }
 
-    jsonify(): BlockData {
+    public jsonify(): BlockData {
         return {
             coords: this.getCoords(),
             locationID: this.getLocationID(),

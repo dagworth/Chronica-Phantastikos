@@ -1,28 +1,30 @@
 import { IModifier } from "../../../interfaces/IModifier";
+import { Comparable } from "../../../interfaces/Comparable";
+
 import { ModifierData } from "../../../types/objects";
 import { ModifierType } from "../../../types/primitives";
 
 export class Modifier implements IModifier {
-    protected id: string;
-    protected name: string;
-    protected desc: string;
-    protected modifierType: ModifierType;
-    protected impressionable: number;
-    protected status: number;
+    private id: string;
+    private name: string;
+    private desc: string;
+    private modifierType: ModifierType;
+    private impressionability: number;
+    private status: number;
 
     constructor(
         id: string,
         name: string,
         desc: string,
         modifierType: ModifierType,
-        impressionable: number,
+        impressionability: number,
         status: number,
     ) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.modifierType = modifierType;
-        this.impressionable = impressionable;
+        this.impressionability = impressionability;
         this.status = status;
     }
 
@@ -44,8 +46,8 @@ export class Modifier implements IModifier {
         return this.modifierType;
     }
 
-    getImpressionable(): number {
-        return this.impressionable;
+    getImpressionability(): number {
+        return this.impressionability;
     }
 
     getStatus(): number {
@@ -70,8 +72,8 @@ export class Modifier implements IModifier {
         this.modifierType = modifierType;
     }
 
-    setImpressionable(impressionable: number): void {
-        this.impressionable = impressionable;
+    setImpressionability(impressionability: number): void {
+        this.impressionability = impressionability;
     }
 
     setStatus(status: number): void {
@@ -80,13 +82,17 @@ export class Modifier implements IModifier {
 
     // else
 
+    equals(modifier: Modifier): boolean {
+        return this.getID() === modifier.getID();
+    }
+
     jsonify(): ModifierData {
         return {
             id: this.getID(),
             name: this.getName(),
             desc: this.getDesc(),
             modifierType: this.getModifierType(),
-            impressionable: this.getImpressionable(),
+            impressionable: this.getImpressionability(),
             status: this.getStatus(),
         };
     }
