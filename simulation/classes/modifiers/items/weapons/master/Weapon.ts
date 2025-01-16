@@ -15,14 +15,14 @@ export class Weapon extends Item {
         desc: string,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
+        condition: IntClosedRange<1, 100>,
         price: number,
         weight: number,
         damage: IntClosedRange<1, 100>,
         weaponType: WeaponType,
         attackSpeed: IntClosedRange<1, 100>,
-        condition: IntClosedRange<1, 100>
     ) {
-        super(id, name, desc, impressionability, status, "Weapon", price, weight, condition);
+        super(id, name, desc, impressionability, status, condition, "Weapon", price, weight);
 
         this.damage = damage;
         this.weaponType = weaponType;

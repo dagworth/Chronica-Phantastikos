@@ -20,7 +20,7 @@ export class Modifier implements IModifier {
         modifierType: ModifierType,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
-        condition: IntClosedRange<1, 100>
+        condition: IntClosedRange<1, 100>,
     ) {
         this.id = id;
         this.name = name;
@@ -28,7 +28,7 @@ export class Modifier implements IModifier {
         this.modifierType = modifierType;
         this.impressionability = impressionability;
         this.status = status;
-        this.condition = condition
+        this.condition = condition;
     }
 
     getID(): string {

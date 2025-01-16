@@ -15,10 +15,10 @@ export class Item extends Modifier {
         desc: string,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
+        condition: IntClosedRange<1, 100>,
         itemType: ItemType,
         price: number,
         weight: number,
-        condition: IntClosedRange<1, 100>
     ) {
         super(id, name, desc, "Item", impressionability, status, condition);
 

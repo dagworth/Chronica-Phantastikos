@@ -14,15 +14,27 @@ export class MeleeWeapon extends Weapon {
         desc: string,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
+        condition: IntClosedRange<1, 100>,
         price: number,
         weight: number,
         damage: IntClosedRange<1, 100>,
         attackSpeed: IntClosedRange<1, 100>,
         meleeWeaponType: MeleeWeaponType,
         material: Material,
-        condition: IntClosedRange<1, 100>,
     ) {
-        super(id, name, desc, impressionability, status, price, weight, damage, "Melee", attackSpeed, condition);
+        super(
+            id,
+            name,
+            desc,
+            impressionability,
+            status,
+            condition,
+            price,
+            weight,
+            damage,
+            "Melee",
+            attackSpeed,
+        );
 
         this.meleeWeaponType = meleeWeaponType;
         this.material = material;

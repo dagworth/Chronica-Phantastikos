@@ -16,6 +16,7 @@ export class RangedWeapon extends Weapon {
         desc: string,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
+        condition: IntClosedRange<1, 100>,
         price: number,
         weight: number,
         damage: IntClosedRange<1, 100>,
@@ -25,7 +26,19 @@ export class RangedWeapon extends Weapon {
         projectilesFiredPerShot: IntClosedRange<1, 10>,
         rangedWeaponType: RangedWeaponType,
     ) {
-        super(id, name, desc, impressionability, status, price, weight, damage, "Ranged", attackSpeed);
+        super(
+            id,
+            name,
+            desc,
+            impressionability,
+            status,
+            condition,
+            price,
+            weight,
+            damage,
+            "Ranged",
+            attackSpeed,
+        );
 
         this.ammo = ammo;
         this.range = range;
