@@ -10,7 +10,7 @@ import * as _ from "lodash";
  *
  * @template T - The type of elements in the array and the accumulator.
  */
-export function fold<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
+export function fold<T>(f: (x: T, y: T) => T, z: T, xs: T[] | ReadonlyArray<T>): T {
     let memo: T = z;
     for (let i: number = 0; i < xs.length; i++) memo = f(memo, xs[i]);
     return memo;
@@ -26,7 +26,7 @@ export function fold<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
  *
  * @template T - The type of elements in the array and the accumulator.
  */
-export function foldl<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
+export function foldl<T>(f: (x: T, y: T) => T, z: T, xs: T[] | ReadonlyArray<T>): T {
     return fold(f, z, xs);
 }
 
@@ -40,7 +40,7 @@ export function foldl<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
  *
  * @template T - The type of elements in the array and the accumulator.
  */
-export function foldr<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
+export function foldr<T>(f: (x: T, y: T) => T, z: T, xs: T[] | ReadonlyArray<T>): T {
     return fold(f, z, _.reverse(xs));
 }
 
@@ -51,7 +51,7 @@ export function foldr<T>(f: (x: T, y: T) => T, z: T, xs: T[]): T {
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array.
  */
-export function fold1(f: (x: number, y: number) => number, xs: number[]): number {
+export function fold1(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return fold(f, 1, xs);
 }
 
@@ -62,7 +62,7 @@ export function fold1(f: (x: number, y: number) => number, xs: number[]): number
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array.
  */
-export function foldl1(f: (x: number, y: number) => number, xs: number[]): number {
+export function foldl1(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return foldl(f, 1, xs);
 }
 
@@ -73,7 +73,7 @@ export function foldl1(f: (x: number, y: number) => number, xs: number[]): numbe
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array in reverse order.
  */
-export function foldr1(f: (x: number, y: number) => number, xs: number[]): number {
+export function foldr1(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return foldr(f, 1, xs);
 }
 
@@ -84,7 +84,7 @@ export function foldr1(f: (x: number, y: number) => number, xs: number[]): numbe
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array.
  */
-export function fold0(f: (x: number, y: number) => number, xs: number[]): number {
+export function fold0(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return fold(f, 0, xs);
 }
 
@@ -95,7 +95,7 @@ export function fold0(f: (x: number, y: number) => number, xs: number[]): number
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array.
  */
-export function foldl0(f: (x: number, y: number) => number, xs: number[]): number {
+export function foldl0(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return foldl(f, 0, xs);
 }
 
@@ -106,7 +106,7 @@ export function foldl0(f: (x: number, y: number) => number, xs: number[]): numbe
  * @param {number[]} xs - The array of numbers to fold over.
  * @returns {number} - The final accumulated result after folding over the array in reverse order.
  */
-export function foldr0(f: (x: number, y: number) => number, xs: number[]): number {
+export function foldr0(f: (x: number, y: number) => number, xs: number[] | ReadonlyArray<number>): number {
     return foldr(f, 0, xs);
 }
 
@@ -117,7 +117,7 @@ export function foldr0(f: (x: number, y: number) => number, xs: number[]): numbe
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array.
  */
-export function foldt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldt(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return fold(f, true, xs);
 }
 
@@ -128,7 +128,7 @@ export function foldt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): bo
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array.
  */
-export function foldlt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldlt(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return foldl(f, true, xs);
 }
 
@@ -139,7 +139,7 @@ export function foldlt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array in reverse order.
  */
-export function foldrt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldrt(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return foldr(f, true, xs);
 }
 
@@ -150,7 +150,7 @@ export function foldrt(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array.
  */
-export function foldf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldf(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return fold(f, false, xs);
 }
 
@@ -161,7 +161,7 @@ export function foldf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): bo
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array.
  */
-export function foldlf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldlf(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return foldl(f, false, xs);
 }
 
@@ -172,7 +172,7 @@ export function foldlf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array in reverse order.
  */
-export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
+export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[] | ReadonlyArray<boolean>): boolean {
     return foldr(f, false, xs);
 }
 
@@ -183,7 +183,7 @@ export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
  * @param {string[]} xs - The array of strings to fold over.
  * @returns {string} - The final accumulated result after folding over the array.
  */
-export function foldstr(f: (x: string, y: string) => string, xs: string[]): string {
+export function foldstr(f: (x: string, y: string) => string, xs: string[] | ReadonlyArray<string>): string {
     return fold(f, "", xs);
 }
 
@@ -194,7 +194,7 @@ export function foldstr(f: (x: string, y: string) => string, xs: string[]): stri
  * @param {string[]} xs - The array of strings to fold over.
  * @returns {string} - The final accumulated result after folding over the array.
  */
-export function foldlstr(f: (x: string, y: string) => string, xs: string[]): string {
+export function foldlstr(f: (x: string, y: string) => string, xs: string[]  | ReadonlyArray<string>): string {
     return foldl(f, "", xs);
 }
 
@@ -205,7 +205,7 @@ export function foldlstr(f: (x: string, y: string) => string, xs: string[]): str
  * @param {string[]} xs - The array of strings to fold over.
  * @returns {string} - The final accumulated result after folding over the array in reverse order.
  */
-export function foldrstr(f: (x: string, y: string) => string, xs: string[]): string {
+export function foldrstr(f: (x: string, y: string) => string, xs: string[] | ReadonlyArray<string>): string {
     return foldr(f, "", xs);
 }
 
@@ -219,7 +219,7 @@ export function foldrstr(f: (x: string, y: string) => string, xs: string[]): str
  *
  * @template T - The type of elements in the array.
  */
-export function freq<T>(xs: T[], k: T, eqF?: (x: T, y: T) => boolean) {
+export function freq<T>(xs: T[] | ReadonlyArray<T>, k: T, eqF?: (x: T, y: T) => boolean) {
     return xs.filter((x: T): boolean => (eqF == null || eqF == undefined ? x === k : eqF(x, k))).length;
 }
 
@@ -231,7 +231,7 @@ export function freq<T>(xs: T[], k: T, eqF?: (x: T, y: T) => boolean) {
  *
  * @template T - The type of elements in the array.
  */
-export function enumerate<T>(xs: T[]): [number, T][] {
+export function enumerate<T>(xs: T[] | ReadonlyArray<T>): [number, T][] {
     return xs.map((x: T, i: number): [number, T] => [i, x]);
 }
 
@@ -243,6 +243,19 @@ export function enumerate<T>(xs: T[]): [number, T][] {
  *
  * @template T - The type of elements in the array.
  */
-export function Ø<T>(xs: T[]): boolean {
+export function Ø<T>(xs: T[] | ReadonlyArray<T>): boolean {
     return xs.length === 0;
+}
+
+/**
+ * Selects a random element from an array.
+ *
+ * @param {T[]} array - The array from which to select a random element.
+ * @returns {T | undefined} - A random element from the array, or `undefined` if the array is empty.
+ *
+ * @template T - The type of elements in the array.
+ */
+export function getRandomElement<T>(array: T[] | ReadonlyArray<T>): T | undefined {
+    if (array.length === 0) return undefined;
+    return array[Math.floor(Math.random() * array.length)];
 }

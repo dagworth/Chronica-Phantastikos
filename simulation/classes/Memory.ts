@@ -2,17 +2,17 @@ import { Rememberable } from "../interfaces/Rememberable";
 
 import { foldt } from "../../lib/Array";
 
-import { PerceptionModifiers, WriteableMemory } from "../types/objects";
+import { Perception, WriteableMemory } from "../types/objects";
 import { Statistic } from "../types/primitives";
 
 export class Memory implements Rememberable {
     private subjectID: string;
-    private subjectPerceptionModifiers: PerceptionModifiers;
+    private subjectPerception: Perception;
     private associations: string[];
 
-    constructor(subjectID: string, subjectPerceptionModifiers: PerceptionModifiers, associations: string[]) {
+    constructor(subjectID: string, subjectPerception: Perception, associations: string[]) {
         this.subjectID = subjectID;
-        this.subjectPerceptionModifiers = { ...subjectPerceptionModifiers };
+        this.subjectPerception = { ...subjectPerception };
         this.associations = [...associations];
     }
 
@@ -20,8 +20,8 @@ export class Memory implements Rememberable {
         return this.subjectID;
     }
 
-    getSubjectPerceptionModifiers(): PerceptionModifiers {
-        return { ...this.subjectPerceptionModifiers };
+    getSubjectPerception(): Perception {
+        return { ...this.subjectPerception };
     }
 
     getAssociations(): string[] {
@@ -32,8 +32,8 @@ export class Memory implements Rememberable {
         this.subjectID = subjectID;
     }
 
-    setSubjectPerceptionModifiers(subjectPerceptionModifiers: PerceptionModifiers): void {
-        this.subjectPerceptionModifiers = subjectPerceptionModifiers;
+    setSubjectPerception(subjectPerception: Perception): void {
+        this.subjectPerception = subjectPerception;
     }
 
     setAssociations(associations: string[]): void {
@@ -51,10 +51,10 @@ export class Memory implements Rememberable {
             ) &&
             foldt(
                 (b1: boolean, b2: boolean): boolean => b1 && b2,
-                Object.keys(this.getSubjectPerceptionModifiers()).map(
+                Object.keys(this.getSubjectPerception()).map(
                     (key: string): boolean =>
-                        this.getSubjectPerceptionModifiers()[key as Statistic] ===
-                        memory.getSubjectPerceptionModifiers()[key as Statistic],
+                        this.getSubjectPerception()[key as Statistic] ===
+                        memory.getSubjectPerception()[key as Statistic],
                 ),
             )
         );
@@ -63,7 +63,7 @@ export class Memory implements Rememberable {
     jsonify(): WriteableMemory {
         return {
             subjectID: this.getSubjectID(),
-            subjectPerceptionModifiers: this.getSubjectPerceptionModifiers(),
+            subjectPerceptionModifiers: this.getSubjectPerception(),
             associations: this.getAssociations(),
         };
     }

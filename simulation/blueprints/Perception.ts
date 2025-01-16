@@ -1,6 +1,6 @@
-import { PerceptionModifiers } from "../objects";
+import { Perception } from "../types/objects";
 
-export const perceptionModifiersBlueprint: PerceptionModifiers = {
+export const perceptionBlueprint: Perception = {
     intelligence: 0,
     trusting: 0,
     strength: 0,
@@ -18,5 +18,4 @@ export const perceptionModifiersBlueprint: PerceptionModifiers = {
 
     muscularity: 0,
     beauty: 0,
-    ageGroup: "infant",
 };

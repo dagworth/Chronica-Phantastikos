@@ -17,7 +17,6 @@ export class Person implements Rememberable {
     private age: number;
 
     private block: Block;
-    private location: Location | null;
 
     private statistics: IndividualStatistics;
     private memories: { [memoryID: string]: Memory };
@@ -33,7 +32,6 @@ export class Person implements Rememberable {
         age: number = 0,
 
         block: Block,
-        location: Location,
 
         statistics: IndividualStatistics,
         memories: { [memoryID: string]: Memory } = {},
@@ -46,12 +44,10 @@ export class Person implements Rememberable {
         this.age = age;
 
         this.block = block;
-        this.location = location;
 
         this.statistics = statistics;
         this.memories = memories;
         this.modifiers = modifiers;
-        this.location = location;
     }
 
     getID(): string {
@@ -79,7 +75,7 @@ export class Person implements Rememberable {
     }
 
     getLocation(): Location | null {
-        return this.location;
+        return this.getBlock().getLocation();
     }
 
     getCoords(): Coordinate {
@@ -135,22 +131,9 @@ export class Person implements Rememberable {
     }
 
     setLocation(location: Location | null): void {
-        if (location == null) {
-            this.location = null;
-            return;
-        }
+        if (location == null) return;
 
-        if (!location.hasBlock(this.getBlock())) {
-            this.setBlock(location.getEntryPoint());
-        }
-
-        const changedLocation: boolean =
-            this.getLocation() == null ? true : !this.getLocation()?.equals(location);
-
-        if (changedLocation) {
-            this.location = location;
-        }
-
+        if (!location.hasBlock(this.getBlock())) this.setBlock(location.getEntryPoint());
         if (!location.hasPerson(this)) location.addPerson(this);
     }
 

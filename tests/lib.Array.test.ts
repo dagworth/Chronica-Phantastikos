@@ -20,6 +20,7 @@ import {
     foldstr,
     foldt,
     freq,
+    getRandomElement,
     Ø,
 } from "../lib/Array";
 
@@ -478,5 +479,34 @@ describe("foldrstr function", (): void => {
     it("should handle a custom string transformation from right to left", (): void => {
         const result = foldrstr((x: string, y: string): string => x + y.toUpperCase(), ["a", "b", "c"]);
         expect(result).to.equal("CBA"); // "" -> "C" -> "CB" -> "CBA"
+    });
+});
+
+describe("getRandomElement function", (): void => {
+    it("should return undefined for an empty array", (): void => {
+        const result = getRandomElement([]);
+        expect(result).to.be.undefined;
+    });
+
+    it("should return the only element for a single-element array", (): void => {
+        const result = getRandomElement([42]);
+        expect(result).to.equal(42);
+    });
+
+    it("should return one of the elements in the array", (): void => {
+        const array = ["a", "b", "c", "d"];
+        const result = getRandomElement(array);
+        expect(array).to.include(result);
+    });
+
+    it("should call Math.random exactly once", (): void => {
+        const randomStub = sinon.stub(Math, "random").returns(0.5);
+        const array = [1, 2, 3, 4];
+
+        const result = getRandomElement(array);
+
+        expect(randomStub.calledOnce).to.be.true;
+        expect(result).to.equal(array[2]);
+        randomStub.restore();
     });
 });

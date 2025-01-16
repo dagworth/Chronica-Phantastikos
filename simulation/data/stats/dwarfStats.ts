@@ -1,4 +1,4 @@
-import { RaceStatistics } from "../../../types";
+import { RaceStatistics } from "../../types/objects";
 
 export const dwarfStats: Readonly<RaceStatistics> = {
     intelligence: 60,
@@ -14,4 +14,5 @@ export const dwarfStats: Readonly<RaceStatistics> = {
     endurance: 90,
     pride: 70,
     lifeSpan: 200,
+    muscularity: 70,
 };

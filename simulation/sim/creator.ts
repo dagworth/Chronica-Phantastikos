@@ -72,7 +72,7 @@ export function createPerson(
         stats?.statistics != undefined
             ? stats.statistics
             : ((m_race: Race): PersonStatistics => {
-                  const stats = {
+                  const stats: RaceStatistics = {
                       ...((r: Race): RaceStatistics => {
                           switch (r) {
                               case "Dwarf":
@@ -88,7 +88,7 @@ export function createPerson(
                           }
                       })(m_race),
                   };
-                  const keys = Object.keys(stats) as (keyof RaceStatistics)[];
+                  const keys: ReadonlyArray<keyof RaceStatistics> = Object.keys(stats) as (keyof RaceStatistics)[];
                   for (let i: number = 0; i < keys.length; i++) {
                       stats[keys[i]] += (Math.random() < 0.5 ? 1 : -1) * (Math.random() * 8);
                   }

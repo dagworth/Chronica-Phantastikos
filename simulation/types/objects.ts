@@ -15,10 +15,11 @@ import {
 } from "./primitives";
 import { ReplaceKeys } from "../../lib/types/types";
 
-export type CharacterStatistics = {
+export type RaceStatistics = {
     intelligence: number;
     trusting: number;
     strength: number;
+    beauty: number;
     spite: number;
     confidence: number;
     violence: number;
@@ -28,21 +29,26 @@ export type CharacterStatistics = {
     endurance: number;
     pride: number;
     lifeSpan: number;
-};
+    muscularity: number;
+}; 
+
+export type CharacterStatistics = Omit<
+    Omit<RaceStatistics, "muscularity">,
+    "beauty"
+>;
 
 export type VisibleStatistics = {
     muscularity: number;
-    beauty: number;
-    ageGroup: AgeGroup;
+    beauty: number; 
 };
 
 export type IndividualStatistics = CharacterStatistics & VisibleStatistics;
 
-export type PerceptionModifiers = CharacterStatistics & VisibleStatistics;
+export type Perception = CharacterStatistics & VisibleStatistics;
 
 export type WriteableMemory = {
     subjectID: string;
-    subjectPerceptionModifiers: PerceptionModifiers;
+    subjectPerceptionModifiers: Perception;
     associations: ReadonlyArray<string>;
 };
 
