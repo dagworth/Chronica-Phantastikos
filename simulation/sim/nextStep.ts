@@ -39,7 +39,7 @@ export function nextStep(): void {
     let step_info: CurrentSimulationInfo = {
         people: people,
         locations: locations,
-        sim_map: map,
+        
     };
 
     ageUp(people);

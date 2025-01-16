@@ -11,6 +11,7 @@ export class Modifier implements IModifier {
     private modifierType: ModifierType;
     private impressionability: IntClosedRange<1, 100>;
     private status: IntClosedRange<1, 100>;
+    private condition: IntClosedRange<1, 100>;
 
     constructor(
         id: string,
@@ -19,6 +20,7 @@ export class Modifier implements IModifier {
         modifierType: ModifierType,
         impressionability: IntClosedRange<1, 100>,
         status: IntClosedRange<1, 100>,
+        condition: IntClosedRange<1, 100>
     ) {
         this.id = id;
         this.name = name;
@@ -26,6 +28,7 @@ export class Modifier implements IModifier {
         this.modifierType = modifierType;
         this.impressionability = impressionability;
         this.status = status;
+        this.condition = condition
     }
 
     getID(): string {
@@ -52,6 +55,10 @@ export class Modifier implements IModifier {
         return this.status;
     }
 
+    getCondition(): IntClosedRange<1, 100> {
+        return this.condition;
+    }
+
     setID(id: string): void {
         this.id = id;
     }
@@ -74,6 +81,10 @@ export class Modifier implements IModifier {
 
     setStatus(status: IntClosedRange<1, 100>): void {
         this.status = status;
+    }
+
+    setCondition(condition: IntClosedRange<1, 100>): void {
+        this.condition = condition;
     }
 
     equals(modifier: Modifier): boolean {

@@ -18,8 +18,9 @@ export class Item extends Modifier {
         itemType: ItemType,
         price: number,
         weight: number,
+        condition: IntClosedRange<1, 100>
     ) {
-        super(id, name, desc, "Item", impressionability, status);
+        super(id, name, desc, "Item", impressionability, status, condition);
 
         this.itemType = itemType;
         this.price = price;

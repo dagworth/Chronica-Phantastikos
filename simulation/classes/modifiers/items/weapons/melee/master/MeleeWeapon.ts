@@ -20,8 +20,9 @@ export class MeleeWeapon extends Weapon {
         attackSpeed: IntClosedRange<1, 100>,
         meleeWeaponType: MeleeWeaponType,
         material: Material,
+        condition: IntClosedRange<1, 100>,
     ) {
-        super(id, name, desc, impressionability, status, price, weight, damage, "Melee", attackSpeed);
+        super(id, name, desc, impressionability, status, price, weight, damage, "Melee", attackSpeed, condition);
 
         this.meleeWeaponType = meleeWeaponType;
         this.material = material;
