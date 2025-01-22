@@ -1,4 +1,4 @@
-import { Weapon } from "../../classes/modifiers/items/weapons/master/Weapon";
+import { Weapon } from "../../classes/modifiers/items/weapons/Weapon";
 import { Pickaxe } from "../../classes/modifiers/items/weapons/melee/Pickaxe";
 import { Spear } from "../../classes/modifiers/items/weapons/melee/Spear";
 import { Sword } from "../../classes/modifiers/items/weapons/melee/Sword";

@@ -1,8 +1,8 @@
-import { Item } from "../../master/Item";
+import { Item } from "../Item";
 
 import { IntClosedRange } from "type-fest";
-import { WeaponData } from "../../../../../types/objects";
-import { WeaponType } from "../../../../../types/primitives";
+import { WeaponData } from "../../../../types/objects";
+import { WeaponType } from "../../../../types/primitives";
 
 export class Weapon extends Item {
     private damage: IntClosedRange<1, 100>;

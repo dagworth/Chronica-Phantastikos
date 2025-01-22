@@ -46,3 +46,5 @@ export type Material =
     | "Copper";
 
 export type RangedWeaponType = "Bow";
+
+export type EventType = "Stealing";

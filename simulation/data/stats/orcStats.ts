@@ -5,7 +5,7 @@ export const orcStats: Readonly<RaceStatistics> = {
     trusting: 30,
     strength: 90,
     beauty: 20,
-    spite: 70,
+    spite: 69,
     confidence: 60,
     violence: 80,
     jealousy: 60,
@@ -13,6 +13,8 @@ export const orcStats: Readonly<RaceStatistics> = {
     ambition: 60,
     endurance: 80,
     pride: 60,
+    perceptive: 45,
     lifeSpan: 60,
     muscularity: 85,
+    speed: 80,
 };

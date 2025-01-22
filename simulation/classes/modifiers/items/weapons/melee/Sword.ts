@@ -1,4 +1,4 @@
-import { MeleeWeapon } from "./master/MeleeWeapon";
+import { MeleeWeapon } from "./MeleeWeapon";
 
 import { IntClosedRange } from "type-fest";
 import { SwordData } from "../../../../../types/objects";

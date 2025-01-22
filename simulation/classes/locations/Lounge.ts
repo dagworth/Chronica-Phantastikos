@@ -1,4 +1,4 @@
-import { Location } from "./master/Location";
+import { Location } from "./special/Location";
 import { Block } from "./special/Block";
 export class Lounge extends Location {
     constructor(

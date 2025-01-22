@@ -1,5 +1,5 @@
 import { Simulation } from "./sim/Simulation";
-import { Modifier } from "./classes/modifiers/master/Modifier";
+import { Modifier } from "./classes/modifiers/Modifier";
 
 import { input } from "../lib/System";
 import { getRandomElement } from "../lib/Array";
@@ -46,16 +46,19 @@ for(let i: number = 0; i < people_count; i++){
     const spawnLocation: Coordinate = [Math.floor(Math.random() * map_size), Math.floor(Math.random() * map_size)]
     const modifiers: Modifier[] = [getRandomElement(weapons) as Modifier];
     const memories: { [memoryID: string]: Memory } = {};
-    const statistics: IndividualStatistics = { ...raceStats };
+    const statistics: IndividualStatistics = {
+        ...raceStats,
+        justice: 70
+    };
 
     const keys: ReadonlyArray<keyof RaceStatistics> = Object.keys(statistics) as (keyof RaceStatistics)[];
     for (let i: number = 0; i < keys.length; i++) {
-        statistics[keys[i]] += (Math.random() < 0.5 ? 1 : -1) * (Math.random() * 8);
+        statistics[keys[i]] += keys[i] as string === "justice" ? 70 : (Math.random() < 0.5 ? 1 : -1) * (Math.random() * 8);
     }
 
     simulation.makePerson(firstName, lastName, age, race, gender, spawnLocation, statistics, memories, modifiers);
 }
 
 while (String(input("Next step?: ")) !== "no") {
-    
+    //
 }

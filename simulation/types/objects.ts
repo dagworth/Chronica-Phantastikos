@@ -1,9 +1,11 @@
-import { Modifier } from "../classes/modifiers/master/Modifier";
+import { Modifier } from "../classes/modifiers/Modifier";
 
 import { IntClosedRange } from "type-fest";
+import { ReplaceKeys } from "../../lib/types/types";
 import {
     AgeGroup,
     Coordinate,
+    EventType,
     Gender,
     ItemType,
     LocationType,
@@ -13,7 +15,6 @@ import {
     RangedWeaponType,
     WeaponType,
 } from "./primitives";
-import { ReplaceKeys } from "../../lib/types/types";
 
 export type RaceStatistics = {
     intelligence: number;
@@ -28,14 +29,18 @@ export type RaceStatistics = {
     ambition: number;
     endurance: number;
     pride: number;
+    perceptive: number;
     lifeSpan: number;
     muscularity: number;
-}; 
+    speed: number;
+};
 
 export type CharacterStatistics = Omit<
     Omit<RaceStatistics, "muscularity">,
     "beauty"
->;
+> & {
+    justice: number;
+};
 
 export type VisibleStatistics = {
     muscularity: number;
@@ -69,6 +74,14 @@ export type BlockData = {
     coords: Coordinate;
     locationID: string;
     people: string[];
+};
+
+export type EventData = {
+    discreteness: IntClosedRange<0,100>;
+    visibility: IntClosedRange<0,100>;
+    eventType: EventType;
+    coordinates: Coordinate[];
+    participants: string[];
 };
 
 export type LocationData = {

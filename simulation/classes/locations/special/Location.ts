@@ -1,5 +1,5 @@
 import { Person } from "../../Person";
-import { Block } from "../special/Block";
+import { Block } from "./Block";
 
 import { ILocation } from "../../../interfaces/ILocation";
 

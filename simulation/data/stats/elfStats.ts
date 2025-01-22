@@ -12,7 +12,9 @@ export const elfStats: Readonly<RaceStatistics> = {
     charisma: 90,
     ambition: 60,
     pride: 80,
-    endurance: 70,
+    endurance: 69,
+    perceptive: 69,
     lifeSpan: 1000,
     muscularity: 50,
+    speed: 80,
 };

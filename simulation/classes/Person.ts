@@ -1,13 +1,13 @@
-import { Location } from "./locations/master/Location";
+import { Location } from "./locations/special/Location";
 import { Memory } from "./Memory";
 import { Block } from "./locations/special/Block";
-import { Modifier } from "./modifiers/master/Modifier";
+import { Modifier } from "./modifiers/Modifier";
 
 import { Rememberable } from "../interfaces/Rememberable";
 
 import { IndividualStatistics, PersonData, WriteableMemory } from "../types/objects";
 import { Coordinate, Gender, Race, Statistic } from "../types/primitives";
-import { Item } from "./modifiers/items/master/Item";
+import { Item } from "./modifiers/items/Item";
 
 export class Person implements Rememberable {
     private id: string;
@@ -79,7 +79,7 @@ export class Person implements Rememberable {
     }
 
     getCoords(): Coordinate {
-        return this.getBlock().getCoords();
+        return [...this.getBlock().getCoords()];
     }
 
     getStatistics(): IndividualStatistics {
@@ -90,8 +90,16 @@ export class Person implements Rememberable {
         return { ...this.memories };
     }
 
-    getModifiers(): Modifier[] {
+    getModifiers(): ReadonlyArray<Modifier> {
         return [...this.modifiers];
+    }
+
+    getItems(): ReadonlyArray<Item> {
+        return [
+            ...this
+                .getModifiers()
+                .filter((modifier: Modifier): boolean => modifier.getModifierType() === "Item")
+        ] as unknown as ReadonlyArray<Item>;
     }
 
     getLogs(): string[] {

@@ -21,6 +21,7 @@ import {
     foldt,
     freq,
     getRandomElement,
+    sum,
     Ø,
 } from "../lib/Array";
 
@@ -508,5 +509,38 @@ describe("getRandomElement function", (): void => {
         expect(randomStub.calledOnce).to.be.true;
         expect(result).to.equal(array[2]);
         randomStub.restore();
+    });
+});
+
+
+describe("sum function", (): void => {
+    it("should return 0 for an empty array", (): void => {
+        const result = sum([]);
+        expect(result).to.equal(0);
+    });
+
+    it("should return the single element for an array with one number", (): void => {
+        const result = sum([42]);
+        expect(result).to.equal(42);
+    });
+
+    it("should correctly sum up multiple elements in the array", (): void => {
+        const result = sum([1, 2, 3, 4, 5]);
+        expect(result).to.equal(15);
+    });
+
+    it("should handle negative numbers correctly", (): void => {
+        const result = sum([-1, -2, -3, -4, -5]);
+        expect(result).to.equal(-15);
+    });
+
+    it("should handle a mix of positive and negative numbers", (): void => {
+        const result = sum([10, -5, 20, -10]);
+        expect(result).to.equal(15);
+    });
+
+    it("should handle decimal numbers correctly", (): void => {
+        const result = sum([1.5, 2.5, 3.5]);
+        expect(result).to.equal(7.5);
     });
 });

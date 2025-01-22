@@ -1,7 +1,7 @@
-import { Weapon } from "../../master/Weapon";
+import { Weapon } from "../Weapon";
 
-import { Material, MeleeWeaponType } from "../../../../../../types/primitives";
-import { MeleeWeaponData } from "../../../../../../types/objects";
+import { Material, MeleeWeaponType } from "../../../../../types/primitives";
+import { MeleeWeaponData } from "../../../../../types/objects";
 import { IntClosedRange } from "type-fest";
 
 export class MeleeWeapon extends Weapon {

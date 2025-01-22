@@ -1,4 +1,4 @@
-import { Location } from "../master/Location";
+import { Location } from "./Location";
 import { Person } from "../../Person";
 
 import { Rememberable } from "../../../interfaces/Rememberable";

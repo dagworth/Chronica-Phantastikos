@@ -210,6 +210,17 @@ export function foldrstr(f: (x: string, y: string) => string, xs: string[] | Rea
 }
 
 /**
+ * Sums up all the elements in the array of numbers
+ *
+ * @param {function} f - The binary function to apply. It takes two arguments: the accumulated value and the current string element.
+ * @param {string[]} xs - The array of strings to fold over.
+ * @returns {string} - The final accumulated result after folding over the array in reverse order.
+ */
+export function sum(arr: ReadonlyArray<number>): number {
+    return fold0((x: number, y: number): number => x + y, [...arr] as ReadonlyArray<number>);
+}
+
+/**
  * Calculates the frequency of a specific element in an array, optionally using a custom equality function.
  *
  * @param {T[]} xs - The array to search.

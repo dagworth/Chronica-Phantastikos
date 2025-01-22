@@ -1,8 +1,8 @@
-import { Weapon } from "../../master/Weapon";
+import { Weapon } from "../Weapon";
 
 import { IntClosedRange } from "type-fest";
-import { RangedWeaponType } from "../../../../../../types/primitives";
-import { RangedWeaponData } from "../../../../../../types/objects";
+import { RangedWeaponType } from "../../../../../types/primitives";
+import { RangedWeaponData } from "../../../../../types/objects";
 
 export class RangedWeapon extends Weapon {
     private ammo: number;

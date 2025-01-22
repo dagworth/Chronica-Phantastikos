@@ -1,4 +1,4 @@
-import { RangedWeapon } from "./master/RangedWeapon";
+import { RangedWeapon } from "./RangedWeapon";
 
 import { IntClosedRange } from "type-fest";
 import { BowData } from "../../../../../types/objects";

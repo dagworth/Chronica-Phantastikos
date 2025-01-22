@@ -1,6 +1,6 @@
 import { Simulation } from "../Simulation";
 import { Person } from "../../classes/Person";
-import { Modifier } from "../../classes/modifiers/master/Modifier";
+import { Modifier } from "../../classes/modifiers/Modifier";
 import { Block } from "../../classes/locations/special/Block";
 import { Memory } from "../../classes/Memory";
 

@@ -1,12 +1,12 @@
 import { Person } from "../classes/Person";
-import { Location } from "../classes/locations/master/Location";
+import { Location } from "../classes/locations/special/Location";
 import { Block } from "../classes/locations/special/Block";
 import { Memory } from "../classes/Memory";
-import { Modifier } from "../classes/modifiers/master/Modifier";
 
 import { PersonData, LocationData, IndividualStatistics } from "../types/objects";
 import { SimulationState } from "../../types/sim_mgmt";
 import { Coordinate, Gender, Race } from "../types/primitives";
+import { Modifier } from "../classes/modifiers/Modifier";
 
 export class Simulation {
     #people: { [key: string]: Person };

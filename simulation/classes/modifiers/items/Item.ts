@@ -1,7 +1,7 @@
-import { Modifier } from "../../master/Modifier";
+import { Modifier } from "../Modifier";
 
-import { ItemData } from "../../../../types/objects";
-import { ItemType } from "../../../../types/primitives";
+import { ItemData } from "../../../types/objects";
+import { ItemType } from "../../../types/primitives";
 import { IntClosedRange } from "type-fest";
 
 export class Item extends Modifier {
